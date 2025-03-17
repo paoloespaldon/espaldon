@@ -1,6 +1,11 @@
 {
     "routes": [
       { "src": "/index", "dest": "/index.html" },
+      { "src": "/index", "dest": "/Accommodation.html" },
+      { "src": "/index", "dest": "/Amenities.html" },
+      { "src": "/index", "dest": "/Contact.html" },
+      { "src": "/index", "dest": "/BOOK.html" },
+      
       { "src": "/Accommodation", "dest": "/Accommodation.html" },
       { "src": "/Amenities", "dest": "/Amenities.html" },
       { "src": "/Contact", "dest": "/Contact.html" },
