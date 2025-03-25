@@ -347,12 +347,54 @@ function showMessage(text, colorClass) {
 
   // Function to move to the next step
   function nextStep() {
-      if (currentStep < 2) {
-          currentStep++;
-          updateStepper();
-          showStepContent();
-      }
-  }
+    // Get input values
+    const checkin = document.querySelector('input[type="date"]').value;
+    const checkout = document.querySelectorAll('input[type="date"]')[1].value;
+    const room = document.querySelector('input[name="room"]:checked');
+
+    // Validation check
+    if (!checkin || !checkout) {
+        showMessage("Please select both check-in and check-out dates.", "text-red-600");
+        return;
+    }
+
+    if (!room) {
+        showMessage("Please select a room before proceeding.", "text-red-600");
+        return;
+    }
+
+    // Move to the next step
+    if (currentStep < 2) {
+        currentStep++;
+        updateStepper();
+        showStepContent();
+        hideMessage(); // Auto-hide notification after switching step
+    }
+}
+
+// Function to display messages
+function showMessage(text, colorClass) {
+    let message = document.getElementById('step1-message');
+    if (!message) {
+        message = document.createElement('p');
+        message.id = 'step1-message';
+        message.className = "text-center mt-4";
+        document.getElementById('step1-content').appendChild(message);
+    }
+    message.textContent = text;
+    message.className = `text-center mt-4 ${colorClass}`;
+}
+
+// Function to hide the message after switching steps
+function hideMessage() {
+    const message = document.getElementById('step1-message');
+    if (message) {
+        setTimeout(() => {
+            message.remove();
+        }, 300); // Short delay for smooth transition
+    }
+}
+
 
   // Function to move to the previous step
   function prevStep() {
